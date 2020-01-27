@@ -81,6 +81,37 @@ function promptUserPurchase() {
 	})
 }
 
+function displayInventory() {
+    
+    queryStr = 'SELECT * FROM products';
+
+	connection.query(queryStr, function(err, data) {
+		if (err) throw err;
+
+		console.log('Current Inventory: ');
+
+		var str = '';
+		for (var i = 0; i < data.length; i++) {
+			str = '';
+			str += 'Item ID: ' + data[i].item_id;
+			str += 'Product Name: ' + data[i].product_name;
+			str += 'Department: ' + data[i].department_name;
+			str += 'Price: $' + data[i].price;
+
+			console.log(str);
+		}
+
+	  	promptUserPurchase();
+	})
+}
+
+
+function runBamazon() {
+
+	displayInventory();
+}
+
+runBamazon();
 
 
 
